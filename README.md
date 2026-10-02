@@ -5,11 +5,11 @@
 ## 安装
 
 ```bash
-git clone https://github.com/sudongyuer/claude.git ~/git/claude
-git clone https://github.com/sudongyuer/skills.git ~/git/skills
-cd ~/git/claude
+git clone https://github.com/sudongyuer/claude.git ~/work/claude
+git clone https://github.com/sudongyuer/skills.git ~/work/skills
+cd ~/work/claude
 ./install.sh --dry-run                           # 先看会做什么
-./install.sh --plugins --skills ~/git/skills     # 链接配置、安装插件、安装 skills
+./install.sh --plugins --skills ~/work/skills     # 链接配置、安装插件、安装 skills
 ```
 
 - `CLAUDE.md`、`agents/`、`commands/`、`output-styles/` 以软链接放进 `~/.claude/`，之后 `git pull` 即更新。
