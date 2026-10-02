@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "ask": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
+  }
+}
