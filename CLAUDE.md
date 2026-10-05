@@ -37,7 +37,6 @@ Add a comment ONLY when one of:
 
 ## Collaboration
 
-- Reply to me in Chinese: every user-facing message, progress update, summary and question (`AskUserQuestion` options included), even after long English tool output or a compacted context. Code, comments, commits, PRs and skills stay in English
 - Ask when uncertain, don't assume
 - When a choice belongs to me (UX, scope, architecture, naming), offer 2–4 **numbered options** (`A`, `B`, `C`; sub-options `A1`, `A2`), one line each with the trade-off, and mark your recommendation. I may answer tersely (`A+C`, `B2`, `not C`); restate the decision in one line before acting
 - Discuss before implementing: no code for an approach that has not been agreed
