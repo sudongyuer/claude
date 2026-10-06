@@ -12,17 +12,18 @@ cd ~/work/claude
 ./install.sh --plugins --skills ~/work/skills     # 链接配置、安装插件、安装 skills
 ```
 
-- `CLAUDE.md`、`agents/`、`commands/`、`output-styles/` 以软链接放进 `~/.claude/`，之后 `git pull` 即更新。
+- `CLAUDE.md`、`agents/`、`commands/`、`hooks/`、`output-styles/` 以软链接放进 `~/.claude/`，之后 `git pull` 即更新。
 - 已存在的同名文件不会被覆盖；加 `--force` 会先备份到 `~/.claude/backup-<时间>/` 再替换。
-- `settings.json` 只在 `~/.claude/settings.json` 不存在时复制；已存在时只打印差异，由你手动合并。
+- `settings.json` 只在 `~/.claude/settings.json` 不存在时复制；已存在时只打印差异，由你手动合并（新增的 `hooks` 段需要手动合并进去才会生效）。
 
 ## 文件说明
 
 | 路径 | 作用 |
 | --- | --- |
 | `CLAUDE.md` | 全局规则：默认零注释、优先检索与查原始资料、编号选项与先讨论后实现、不自动提交、不加 AI 署名、iOS 不关签名、只检查改动文件、事故教训写成规则、设计文档收尾、Superpowers 用法 |
-| `settings.json` | 读取 `.env` 前询问、默认 `acceptEdits`、关闭提交和 PR 署名、启用 5 个插件 |
-| `agents/` | 子 agent：`planner`、`architect`（只读）、`tdd-guide`、`security-reviewer`、`build-error-resolver`、`e2e-runner`、`refactor-cleaner`、`doc-updater` |
+| `settings.json` | 读取 `.env` 前询问、默认 `acceptEdits`、关闭提交和 PR 署名、启用 5 个插件、挂载签名拦截 hook |
+| `agents/` | 子 agent：`architect`（只读，给编号方案）、`build-error-resolver`（用最小的正确改动修编译和类型错误，不许用 `any` 或关检查来过） |
+| `hooks/block-disabled-signing.sh` | PreToolUse hook：拦截带 `CODE_SIGNING_ALLOWED=NO` 的命令；`hooks/test-block-disabled-signing.sh` 是它的测试 |
 | `commands/cc.md` | `/cc` 快速模式：跳过设计流程，最多问 1–2 个问题就动手 |
 | `commands/handoff.md` | `/handoff`：调用 `session-handoff` 生成交接说明 |
 | `commands/pr.md` | `/pr <目标分支>`：从当前分支创建 PR |
@@ -59,4 +60,6 @@ claude plugin install vercel@claude-plugins-official
 
 ## 规则怎么演进
 
-出了事故，就把教训写成规则：只对某个项目成立的，写进那个项目的 `AGENTS.md`；在两个以上项目都成立的，才上升到这里的 `CLAUDE.md`；可重复的流程做成 skill，放进 `skills` 仓库。
+每次纠正或修完 bug，先问"靠什么保证不再犯"，按五层顺序找最靠前的一层：代码结构 > 静态检查、CI 或 hook > 规则 > skill > 人工 review。能用结构或检查保证的，就不写规则（例：签名那条由 hook 拦截）。具体判断用 `skills` 仓库的 `escalate-correction`。
+
+落到"规则"时再定范围：只对某个项目成立的写进那个项目的 `AGENTS.md`；在两个以上项目都成立的才写进这里的 `CLAUDE.md`；可重复的流程做成 skill。规则下沉成检查或上移范围后，删掉或缩短旧的那份。
