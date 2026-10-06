@@ -48,7 +48,7 @@ link() {
 }
 
 run mkdir -p "$DEST"
-for item in CLAUDE.md agents commands output-styles; do
+for item in CLAUDE.md agents commands hooks output-styles; do
   link "$item"
 done
 

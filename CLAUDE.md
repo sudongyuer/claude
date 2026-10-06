@@ -48,7 +48,7 @@ Add a comment ONLY when one of:
 
 ## iOS signing
 
-- Never pass `CODE_SIGNING_ALLOWED=NO` to xcodebuild, expo, Fastlane, or any iOS build, including Simulator Debug. It strips Keychain entitlements; the app launches and then cannot sync. If signing fails, fix signing. Do not disable it.
+- Never disable code signing for any iOS build, including Simulator Debug: it strips Keychain entitlements and the app cannot sync. If signing fails, fix signing. `CODE_SIGNING_ALLOWED=NO` is blocked by the `hooks/block-disabled-signing.sh` PreToolUse hook.
 
 ## Security
 
@@ -73,13 +73,10 @@ Add a comment ONLY when one of:
 
 ## Lessons become rules
 
-When something breaks because of a missing rule, fix it and write the lesson down as a rule in the same change, stating its scope:
-
-- **Project-specific** (one repository's layout, tooling, platform) → that project's `AGENTS.md`, with a one-line reason
-- **True for every project** (it has held in at least two projects, or is obviously universal) → this global `CLAUDE.md`
-- **A repeatable procedure** with a trigger and a verifiable outcome → a skill (use `session-to-skill`)
-
-When a rule moves up, shorten or remove the lower copy.
+- After fixing a bug, search the codebase for the same faulty pattern (`ast-grep`, `rg`) and fix or list every other instance before calling it done
+- After a correction or a bug fix, use `escalate-correction` to put the guarantee at the lowest layer that holds: code structure, then a lint rule, CI step or hook, and only then a written rule, a skill, or human review
+- A written rule goes to the project's `AGENTS.md` with a one-line reason; here only once it has held in two projects or is obviously universal. A repeatable procedure becomes a skill via `session-to-skill`
+- Keep one copy: when a guarantee moves to a check or to a wider scope, shorten or delete the old rule
 
 ## UI work
 
