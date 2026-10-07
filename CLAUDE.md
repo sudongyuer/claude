@@ -67,7 +67,7 @@ Add a comment ONLY when one of:
 - Use `ast-grep` (sg) for code search and refactoring when possible
 - Run lint (includes typecheck) after writing code, but don't build unless needed
 - **Only lint/typecheck/format the files you modified** — never run these tools on the entire project. Scope checks to changed files only
-- Judge a check by its exit status: capture `$?` before piping its output into `grep`/`head`, which hides failures
+- Judge a check by its exit status: capture `$?` before piping its output into `grep`/`head`, which hides failures. Never decide pass/fail by grepping the output for an error pattern: color codes split tokens like `error TS`, so the grep finds nothing while the check fails
 - Before committing after `git add -A`, read the staged list and unstage anything you did not change (e.g. a stray file deletion)
 - In zsh an unquoted `$VAR` holding a list of paths is one argument; pass lists through `xargs` or an array
 
