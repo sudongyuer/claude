@@ -77,7 +77,7 @@ Add a comment ONLY when one of:
 - After a correction or a bug fix, use `escalate-correction` to put the guarantee at the lowest layer that holds: code structure, then a lint rule, CI step or hook, and only then a written rule, a skill, or human review
 - A written rule goes to the project's `AGENTS.md` with a one-line reason; here only once it has held in two projects or is obviously universal. A repeatable procedure becomes a skill via `session-to-skill`
 - Keep one copy: when a guarantee moves to a check or to a wider scope, shorten or delete the old rule
-- Before opening or updating a PR, run `compound-loop` (retro → lowest-layer fixes → trend row); a hook blocks `gh pr create` in repos with `docs/retros/` until the branch has a retro
+- Run `compound-loop` throughout a unit of work, not only at the end: open the running retro at the first candidate, add one whenever I correct you or a check fails (the `retro-capture` hook reminds), and finish it before the PR (a hook blocks `gh pr create` in repos with `docs/retros/` until the branch has one)
 
 ## UI work
 
