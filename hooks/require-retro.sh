@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 input="$(cat)"
-printf '%s' "$input" | grep -Eq 'gh[[:space:]]+pr[[:space:]]+create' || exit 0
-printf '%s' "$input" | grep -q 'RETRO_SKIP=1' && exit 0
+command="$(printf '%s' "$input" | python3 -c 'import json,sys;print(json.load(sys.stdin).get("tool_input",{}).get("command",""))' 2>/dev/null)"
+printf '%s\n' "$command" | grep -Eq '(^|[;&|(][[:space:]]*)([A-Z_]+=[^[:space:]]+[[:space:]]+)*gh[[:space:]]+pr[[:space:]]+create' || exit 0
+printf '%s\n' "$command" | grep -Eq '(^|[;&|(][[:space:]]*)RETRO_SKIP=1[[:space:]]' && exit 0
 cwd="$(printf '%s' "$input" | python3 -c 'import json,sys;print(json.load(sys.stdin).get("cwd",""))' 2>/dev/null)"
 root="$(git -C "${cwd:-.}" rev-parse --show-toplevel 2>/dev/null)" || exit 0
 [ -d "$root/docs/retros" ] || exit 0
