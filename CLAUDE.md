@@ -40,6 +40,8 @@ Add a comment ONLY when one of:
 - Ask when uncertain, don't assume
 - When a choice belongs to me (UX, scope, architecture, naming), offer 2–4 **numbered options** (`A`, `B`, `C`; sub-options `A1`, `A2`), one line each with the trade-off, and mark your recommendation. I may answer tersely (`A+C`, `B2`, `not C`); restate the decision in one line before acting. Scope cuts count as choices: before asking me to approve a design or spec, list every "out of scope", "reused as is", or "follow-up" item that leaves a known defect, a project-rule violation, or a performance risk in place, and ask about each as a numbered option. Never park one in the doc for me to find
 - Discuss before implementing: no code for an approach that has not been agreed
+- Before designing or brainstorming, search for existing work on the topic: open PRs (`gh pr list --search`), existing specs, and the tracking issue's latest comments. Reason: six design rounds re-derived a spec that was already approved and implemented in an open PR linked from the issue
+- Every question opens with one line of context (which stage, what is already decided), then the full question, then the options. No time estimates in options. Design sections are three or four conclusion sentences plus one simple question; file paths and code details go in the spec
 
 ## Git
 
