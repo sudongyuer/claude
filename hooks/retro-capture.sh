@@ -13,6 +13,8 @@ if not os.path.isdir(os.path.join(root, 'docs', 'retros')):
 event = d.get('hook_event_name', '')
 if event == 'UserPromptSubmit':
     prompt = re.sub(r'<pasted_content[^>]*>.*?</pasted_content[^>]*>', '', d.get('prompt', ''), flags=re.S)
+    if '<task-notification>' in prompt or 'SYSTEM NOTIFICATION' in prompt:
+        sys.exit(0)
     cues = r'不是|不对|错了|又|为什么|怎么没|有没有|是不是|你应该|我不提醒|浪费|误判|没生效|没用|忘了|\bwhy\b|\bwrong\b|\bagain\b|should have|did you'
     if re.search(cues, prompt, re.I):
         print('compound-loop: this message may correct you or point at something you should have caught. '
