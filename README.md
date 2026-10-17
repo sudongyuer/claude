@@ -24,6 +24,7 @@ cd ~/work/claude
 | `settings.json` | 读取 `.env` 前询问、默认 `acceptEdits`、关闭提交和 PR 署名、启用 5 个插件、挂载签名拦截 hook |
 | `agents/` | 子 agent：`architect`（只读，给编号方案）、`build-error-resolver`（用最小的正确改动修编译和类型错误，不许用 `any` 或关检查来过） |
 | `hooks/block-disabled-signing.sh` | PreToolUse hook：拦截带 `CODE_SIGNING_ALLOWED=NO` 的命令；`hooks/test-block-disabled-signing.sh` 是它的测试 |
+| `hooks/require-review-ack.sh` | PreToolUse hook：当前分支的 PR 还有未解决的 review 线程时，拦截 `git push`、`gh pr merge`、`gh pr ready` 并列出这些线程；处理完后用 `REVIEW_ACK=1` 前缀放行。`hooks/test-require-review-ack.sh` 是它的测试 |
 | `commands/cc.md` | `/cc` 快速模式：跳过设计流程，最多问 1–2 个问题就动手 |
 | `commands/handoff.md` | `/handoff`：调用 `session-handoff` 生成交接说明 |
 | `commands/pr.md` | `/pr <目标分支>`：从当前分支创建 PR |
