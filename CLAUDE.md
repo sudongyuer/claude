@@ -89,8 +89,3 @@ Add a comment ONLY when one of:
 ## Specs
 
 - A feature built from a spec is not done until `spec-lifecycle` has appended its Implementation Record, set `status: implemented`, and updated the index — before the PR is opened or updated
-
-## Superpowers
-
-- `brainstorming`: after spec is approved, **skip `writing-plans`** unless I explicitly ask for a plan. Then ask which execution mode: (1) Subagent-Driven (recommended, `subagent-driven-development`) (2) Inline (`executing-plans`) (3) Just code it. Wait for my choice before touching code.
-- When a project's `AGENTS.md` sets spec or plan locations, they override superpowers' default `docs/superpowers/` paths.

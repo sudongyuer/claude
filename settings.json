@@ -68,7 +68,7 @@
     "sessionUrl": false
   },
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": false,
     "context7@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "linear@claude-plugins-official": true,

@@ -38,7 +38,6 @@ cd ~/work/claude
 
 | 插件 | 用途 |
 | --- | --- |
-| `superpowers` | 脑暴、设计文档、实施计划、子 agent 驱动执行、TDD、调试等工作流 |
 | `context7` | 查询库和框架的最新文档 |
 | `code-simplifier` | 简化和清理刚写好的代码 |
 | `linear` | 读写 Linear 的 issue |
@@ -50,7 +49,6 @@ cd ~/work/claude
 # 官方市场在第一次打开交互式会话时会自动添加；如果没有：
 claude plugin marketplace add anthropics/claude-plugins-official
 
-claude plugin install superpowers@claude-plugins-official
 claude plugin install context7@claude-plugins-official
 claude plugin install code-simplifier@claude-plugins-official
 claude plugin install linear@claude-plugins-official
